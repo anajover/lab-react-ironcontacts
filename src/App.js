@@ -1,25 +1,105 @@
-import logo from './logo.svg';
 import './App.css';
+import allContacts from "./contacts.json"
+import {useState} from "react"
+import React from "react"
 
 function App() {
+
+  const [contacts, setContactsList ] = useState(allContacts.slice(0, 5))
+
+  const handleRandom = () => {
+
+    if (contacts.length === allContacts.length) {
+      return;
+    } 
+
+    const randomNumber = Math.floor(Math.random() * allContacts.length)
+    const randomContact = allContacts[randomNumber]
+
+    const contactsId = contacts.map((eachContact) => eachContact.id)
+    if (contactsId.includes(randomContact.id)){
+      handleRandom()
+    } else {
+      setContactsList([...contacts, randomContact])  
+    }
+
+    
+  }
+
+  const handleOrderName = () => {
+    const contactsCopy = [...contacts]
+
+    contactsCopy.sort((a, b) => a.name > b.name ? 1 : -1)
+
+    setContactsList(contactsCopy)
+  }
+
+  const handleOrderPop = () => {
+    const contactsCopy = [...contacts]
+
+    contactsCopy.sort((a, b) => a.popularity > b.popularity ? -1 : 1)
+    setContactsList(contactsCopy)
+  }
+
+  const handleDelete = (idToDelete) => {
+    
+    const filterArr = contacts.filter((eachContact) => eachContact.id !== idToDelete)
+    setContactsList(filterArr)
+  }
+
+  
+ 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      
+      <div className="App">
+
+    
+            <div>
+
+            <h1>IronContacts</h1>
+
+            <button onClick={handleRandom}>Agregar Actor random</button>
+            <button onClick={handleOrderName}>Ordenar por Nombre</button>
+            <button onClick={handleOrderPop}>Ordenar por Popularidad</button>
+
+
+            <table>
+            <thead>
+            <tr>
+              <th>Picture</th>
+              <th>Name</th>
+              <th>Popularity</th>
+              <th>Won an Oscar</th>
+              <th>Won an Emmy</th>
+              </tr>
+            </thead>
+            <tbody>
+            {
+        contacts.map((eachContact) => {
+          return(
+            <tr key={eachContact.id}>
+              <td><img src={eachContact.pictureUrl} alt="{eachContact.name}"  width="100px"/></td>
+              <td>{eachContact.name}</td>
+              <td>{eachContact.popularity.toFixed(2)}</td>
+              <td>{eachContact.wonOscar === true ? "🎬" : "💀"}</td>
+              <td>{eachContact.wonEmmy === true ? "🎶" : "💀"}</td>
+              <td><button onClick ={()=> handleDelete(eachContact.id)}>Borrar</button></td>
+            </tr>
+            
+          )
+        })
+      }
+      </tbody>
+            </table>
+            </div>
+
+
     </div>
   );
+  
 }
+
 
 export default App;
