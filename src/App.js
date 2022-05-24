@@ -53,21 +53,23 @@ function App() {
   return (
 
       
-      <div className="App">
+      <div id="container" className="App">
 
     
             <div>
 
             <h1>IronContacts</h1>
 
-            <button onClick={handleRandom}>Agregar Actor random</button>
-            <button onClick={handleOrderName}>Ordenar por Nombre</button>
-            <button onClick={handleOrderPop}>Ordenar por Popularidad</button>
+            <div id="buttons">
+            <button class="each-button" onClick={handleRandom}>Agregar Actor random</button>
+            <button class="each-button" onClick={handleOrderName}>Ordenar por Nombre</button>
+            <button class="each-button" onClick={handleOrderPop}>Ordenar por Popularidad</button>
+            </div>
 
 
             <table>
             <thead>
-            <tr>
+            <tr class="head-table">
               <th>Picture</th>
               <th>Name</th>
               <th>Popularity</th>
@@ -85,7 +87,7 @@ function App() {
               <td>{eachContact.popularity.toFixed(2)}</td>
               <td>{eachContact.wonOscar === true ? "🎬" : "💀"}</td>
               <td>{eachContact.wonEmmy === true ? "🎶" : "💀"}</td>
-              <td><button onClick ={()=> handleDelete(eachContact.id)}>Borrar</button></td>
+              <td><button class="delete-btn" onClick ={()=> handleDelete(eachContact.id)}>Borrar</button></td>
             </tr>
             
           )
@@ -94,6 +96,7 @@ function App() {
       </tbody>
             </table>
             </div>
+           
 
 
     </div>

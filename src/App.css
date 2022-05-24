@@ -37,10 +37,62 @@
   }
 }
 
-th {
-  border: solid 2px black;
+body {
+  background-color: grey;
+  
 }
 
+h1 {
+  background-color: rgb(186, 184, 184);
+  border: inset;
+ color:rgb(92, 31, 9);
+}
+
+/* th {
+  border-top: solid 2px black;
+  border-right: solid 2px black;
+} */
+
 td {
-  border: solid 1px darkblue;
+  border-top: solid 1px darkblue;
+  border-right: dotted 1px darkblue;
+}
+
+.delete-btn {
+  color: brown;
+  background: pink;
+  border: outset rgb(247, 150, 166) 1px;
+  border-radius: 5px;
+  padding: 5px;
+
+}
+
+#container {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(244, 242, 234);
+  margin-right: 150px;
+  margin-left: 150px;
+  
+}
+
+#buttons {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.each-button {
+  padding: 12px;
+  border: outset 2px rgb(255, 147, 165);
+  border-radius: 10px;
+  background: rgb(243, 170, 143);
+  color: rgb(73, 15, 15);
+}
+
+.head-table {
+  border-top: solid 2px black;
+  background-color:black;
+  color: pink;
 }
